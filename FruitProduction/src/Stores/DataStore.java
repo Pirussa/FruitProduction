@@ -19,4 +19,7 @@ public class DataStore {
         this.fruitHarvest = fruitHarvest;
     }
 
+    public boolean isEmpty() {
+        return fruitHarvest.isEmpty();
+    }
 }
