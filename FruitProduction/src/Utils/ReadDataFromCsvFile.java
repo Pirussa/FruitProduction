@@ -64,7 +64,7 @@ public class ReadDataFromCsvFile implements IReadFromFile {
     private static String[] removeQuotationMarks(String info[]) {
         String[] withoutQuotationMarks = new String[info.length];
         for (int i = 0; i < info.length; i++)
-            withoutQuotationMarks[i] = info[i].replace(""", "");
+            withoutQuotationMarks[i] = info[i].replace("\"", "");
 
         return withoutQuotationMarks;
     }
