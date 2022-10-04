@@ -7,4 +7,9 @@ public class Quantity {
     public Quantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
 }

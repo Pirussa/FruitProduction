@@ -15,10 +15,10 @@ public class MainUI implements Runnable {
 
         do {
             try {
-                System.out.printf("Choose an option:%n1 - Load Data From CSV File.%n");
+                System.out.printf("Choose an option:%n1 - Load Data From CSV File.%n4 - Sort by Consecutive Years.%n");
 
                 if (!App.getInstance().getStore().isEmpty()) {
-                    System.out.printf("2 - Do X function%n 3 - Do Y function"); // Escrevam a vossa cena aí.
+                    System.out.printf("2 - Do X function%n 3 - Do Y function%n4 - Sort by Consecutive Years"); // Escrevam a vossa cena aí.
 
                 }
                 System.out.print("Option: ");
@@ -38,6 +38,10 @@ public class MainUI implements Runnable {
                         System.out.println("TBI");
                         isValidOption = true;
                         break;
+
+                    case 4:
+                        SortByConsecutiveYearUI sortByConsecutiveYearUI = new SortByConsecutiveYearUI();
+                        sortByConsecutiveYearUI.run();
                         //add more if you need
                     default:
                         isValidOption = false;
@@ -48,6 +52,10 @@ public class MainUI implements Runnable {
                 isValidOption = false;
             }
         } while (!isValidOption);
+
+        SortByConsecutiveYearUI sortByConsecutiveYearUI = new SortByConsecutiveYearUI();
+        sortByConsecutiveYearUI.run();
+
 
 
     }

@@ -10,6 +10,10 @@ public class Country {
         this.countryName = countryName;
     }
 
+    public String toString() {
+        return countryName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
