@@ -35,7 +35,8 @@ public class MainUI implements Runnable {
                         isValidOption = true;
                         break;
                     case 3:
-                        System.out.println("TBI");
+                        CountriesMinimumSumUI countriesMinimumSumUI = new CountriesMinimumSumUI();
+                        countriesMinimumSumUI.run();
                         isValidOption = true;
                         break;
                         //add more if you need

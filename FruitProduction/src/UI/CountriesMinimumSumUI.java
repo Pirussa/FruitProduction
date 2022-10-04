@@ -1,12 +1,12 @@
 package UI;
 
-import Controllers.CountriesListController;
+import Controllers.CountriesMinimumSumController;
 import Domain.Quantity;
 
 import java.util.Scanner;
 
-public class CountriesListUI implements Runnable {
-    private final CountriesListController controller = new CountriesListController();
+public class CountriesMinimumSumUI implements Runnable {
+    private final CountriesMinimumSumController controller = new CountriesMinimumSumController();
 
     @Override
     public void run() {
