@@ -22,4 +22,9 @@ public class Year {
     public int hashCode() {
         return Objects.hash(year);
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(year);
+    }
 }
