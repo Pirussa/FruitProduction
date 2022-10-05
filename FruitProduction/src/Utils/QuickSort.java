@@ -8,26 +8,72 @@ import java.util.*;
 
 public class QuickSort implements ISorter {
     @Override
-    public void sort(Map<Country, Map<Year, Quantity>> mainList, List<Country> countries, List<Year> years, List<Quantity> quantities, int numberSort) {
+    public void sort(Map<Country, Map<Year, Quantity>> mainList, List<Country> countries, List<Year> years, List<Quantity> quantities, int numberSort, List<Country> equalYearCountries, List<Year> equalYearYears, List<Quantity> equalYearQuantities) {
         if (numberSort == 0) {
             fillLists(mainList, countries, years, quantities);
             quickSortYear(countries, years, quantities, 0, countries.size() - 1);
+        } else {
+            int brokePosition = equalYearCountry(countries, years, quantities, equalYearCountries, equalYearYears, equalYearQuantities);
+            quickSortQuantity(equalYearCountries, equalYearYears, equalYearQuantities, 0, equalYearCountries.size() - 1);
+            rearrange(countries, years, quantities, equalYearCountries, equalYearYears, equalYearQuantities, brokePosition);
         }
-        else
-            quickSortQuantity(countries, years, quantities, 0, countries.size() - 1);
     }
 
     static void fillLists(Map<Country, Map<Year, Quantity>> countryList, List<Country> countries, List<Year> years, List<Quantity> quantities) {
-        Set<Country> countriesAux = countryList.keySet();
-        countries = new ArrayList<>(countriesAux);
-        boolean flag = false;
+        int lenght = 0;
+        countries.addAll(countryList.keySet().stream().toList());
+        for (Map<Year, Quantity> yearQuantityMap : countryList.values().stream().toList()) {
+            years.add(countryList.values().stream().toList().get(lenght).keySet().stream().toList().get(0));
+            quantities.addAll(yearQuantityMap.values());
+            lenght++;
+        }
+    }
 
-        for (Map<Year, Quantity> yearQuantityMap : countryList.values()) {
-            if (!flag) {
-                Set<Year> yearsAux = yearQuantityMap.keySet();
-                years = new ArrayList<>(yearsAux);
+    static int equalYearCountry(List<Country> countries, List<Year> years, List<Quantity> quantities, List<Country> equalYearCountries, List<Year> equalYearYears, List<Quantity> equalYearQuantities) {
+        boolean flag = false;
+        int positionBroke = -1;
+        for (int position = 0; position < countries.size(); position++) {
+            if ((position + 1) < countries.size() && years.get(position).getYear() == years.get(position + 1).getYear()) {
+                equalYearCountries.add(countries.get(position));
+                equalYearYears.add(years.get(position));
+                equalYearQuantities.add(quantities.get(position));
+                if (!flag) {
+                    positionBroke = position;
+                    flag = true;
+                }
+            }
+            else if (position == countries.size() - 1) {
+                equalYearCountries.add(countries.get(position));
+                equalYearYears.add(years.get(position));
+                equalYearQuantities.add(quantities.get(position));
+            }
+        }
+        /*
+        while (!flag) {
+            if (i < countries.size() && years.get(i).getYear() == years.get(i + 1).getYear()) {
+                equalYearCountries = countries.subList(i, countries.size());
+                equalYearYears = years.subList(i, years.size());
+                equalYearQuantities = quantities.subList(i, quantities.size());
                 flag = true;
-                quantities.addAll(yearQuantityMap.values());
+                positionBroke = i;
+            }
+            i++;
+        }
+        */
+        return positionBroke;
+    }
+
+    static void rearrange(List<Country> countries, List<Year> years, List<Quantity> quantities, List<Country> equalYearCountries, List<Year> equalYearYears, List<Quantity> equalYearQuantities, int brokePosition) {
+        if (brokePosition != -1) {
+            if (countries.size() > brokePosition) {
+                countries.subList(brokePosition, countries.size()).clear();
+                years.subList(brokePosition, years.size()).clear();
+                quantities.subList(brokePosition, quantities.size()).clear();
+            }
+            for (int position = 0; position < equalYearCountries.size(); position++) {
+                countries.add(equalYearCountries.get(position));
+                years.add(equalYearYears.get(position));
+                quantities.add(equalYearQuantities.get(position));
             }
         }
     }

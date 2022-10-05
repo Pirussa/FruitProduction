@@ -9,5 +9,5 @@ import java.util.Map;
 
 public interface ISorter {
 
-    void sort(Map<Country, Map<Year, Quantity>> mainList, List<Country> countries, List<Year> years, List<Quantity> quantities, int numberSort);
+    void sort(Map<Country, Map<Year, Quantity>> mainList, List<Country> countries, List<Year> years, List<Quantity> quantities, int numberSort, List<Country> equalYearCountries, List<Year> equalYearYears, List<Quantity> equalYearQuantities);
 }
