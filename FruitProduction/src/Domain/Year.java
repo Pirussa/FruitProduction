@@ -9,6 +9,10 @@ public class Year {
     public Year(int year) {
         this.year = year;
     }
+    
+    public int getYear() {
+        return year;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -28,9 +32,6 @@ public class Year {
         return String.valueOf(year);
     }
 
-    public int getYear() {
-        return year;
-    }
 }
 
 

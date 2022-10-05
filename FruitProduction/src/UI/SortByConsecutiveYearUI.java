@@ -20,9 +20,9 @@ public class SortByConsecutiveYearUI implements Runnable{
 
         Map<Country, Integer> consecutiveYearsMap = controller.sortByConsecutiveYears(fruits.get(index));
 
-        System.out.printf("%-10s%s%n", "Country", "Years");
+        System.out.printf("%-60s%s%n", "Country", "Years");
         for (Map.Entry<Country, Integer> entry : consecutiveYearsMap.entrySet()) {
-            System.out.printf("%-10s%d", entry.getKey(), entry.getValue());
+            System.out.printf("%-60s%d%n", entry.getKey(), entry.getValue());
         }
     }
 }

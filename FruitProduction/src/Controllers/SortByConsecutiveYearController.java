@@ -24,7 +24,6 @@ public class SortByConsecutiveYearController {
                 if (quantity.getQuantity() < yearEntry.getValue().getQuantity())
                     consecutiveYears++;
                 else {
-                    max = consecutiveYears;
                     consecutiveYears = 0;
                 }
 
