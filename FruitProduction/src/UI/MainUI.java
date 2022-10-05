@@ -15,10 +15,10 @@ public class MainUI implements Runnable {
 
         do {
             try {
-                System.out.printf("Choose an option:%n1 - Load Data From CSV File.%n3 - Calculate the minimum amount of countries that produce over a certain quantity%n4 - Sort by Consecutive Years.%n");
+                System.out.printf("Choose an option:%n1 - Load Data From CSV File.%n2 - Get a List of countries (Production in year > Q).%n3 - Calculate the minimum amount of countries that produce over a certain quantity%n4 - Sort by Consecutive Years.%n");
 
                 if (!App.getInstance().getStore().isEmpty()) {
-                    System.out.printf("2 - Do X function%n 3 - Calculate the minimum amount of countries that produce over a certain quantity%n4 - Sort by Consecutive Years"); // Escrevam a vossa cena aí.
+                    System.out.printf("2 - Get a List of countries (Production in year > Q). %n 3 - Calculate the minimum amount of countries that produce over a certain quantity%n4 - Sort by Consecutive Years"); // Escrevam a vossa cena aí.
 
                 }
                 System.out.print("Option: ");
@@ -31,7 +31,8 @@ public class MainUI implements Runnable {
                         isValidOption = true;
                         break;
                     case 2:
-                        System.out.println("NIY");
+                        CountryListUI countryListUI = new CountryListUI();
+                        countryListUI.run();
                         isValidOption = true;
                         break;
                     case 3:

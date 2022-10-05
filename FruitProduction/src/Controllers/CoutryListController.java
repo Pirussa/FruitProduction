@@ -5,7 +5,9 @@ import Domain.Fruit;
 import Domain.Quantity;
 import Domain.Year;
 import Stores.DataStore;
+import Utils.QuickSort;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +16,7 @@ public class CoutryListController {
 
     private final DataStore fruitStore = App.getInstance().getStore();
 
-    public CoutryListController() {
-    }
+    private final  QuickSort quickSort = new QuickSort();
 
     private Map<Country, Map<Year, Quantity>> findCountryYearQuantity(Fruit F, Quantity Q) {
         Map<Country, Map<Year, Quantity>> harvestPerCountryMap = fruitStore.getFruitHarvest().get(F);
@@ -42,8 +43,16 @@ public class CoutryListController {
         return harvestQuantitySuperiorMap;
     }
 
-   /* public List<Country> fillCountryList(Fruit F, Quantity Q) {
-        Map<Country, Map<Year, Quantity>> harvestQuantitySuperiorMap = findCountryYearQuantity(F, Q);
+   public List<Country> sort(Fruit F, Quantity Q) {
+        List<Country> countries = new ArrayList<>();
+        List<Year> years = new ArrayList<>();
+        List<Quantity> quantities = new ArrayList<>();
+        int numberSort = 0;
 
-    }*/
+        quickSort.sort(findCountryYearQuantity(F, Q), countries, years, quantities, numberSort);
+        numberSort++;
+        quickSort.sort(findCountryYearQuantity(F, Q), countries, years, quantities, numberSort);
+
+        return countries;
+    }
 }

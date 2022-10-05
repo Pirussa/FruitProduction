@@ -22,4 +22,18 @@ public class Year {
     public int hashCode() {
         return Objects.hash(year);
     }
+
+
+
+
+
+
+
+
+
+
+
+    public int getYear() {
+        return year;
+    }
 }
