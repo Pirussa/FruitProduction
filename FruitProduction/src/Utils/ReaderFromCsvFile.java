@@ -74,15 +74,24 @@ public class ReaderFromCsvFile implements IReadFromFile {
                     }
                 }
 
+                Map<Country, Map<Year, Quantity>> countryYearsLinkedHashMap;
+                Map<Year, Quantity> yearQuantityLinkedHashMap;
 
-                Map<Country, Map<Year, Quantity>> countryLinkedHashMapLinkedHashMap = new LinkedHashMap<>();
-                Map<Year, Quantity> yearQuantityLinkedHashMap = new LinkedHashMap<>();
-
-                yearQuantityLinkedHashMap.put(year, quantity);
-                countryLinkedHashMapLinkedHashMap.put(country, yearQuantityLinkedHashMap);
-                fruitHarvest.put(fruit, countryLinkedHashMapLinkedHashMap);
-
-
+                if (fruitHarvest.containsKey(fruit)) {
+                    if (fruitHarvest.get(fruit).containsKey(country)) {
+                        fruitHarvest.get(fruit).get(country).put(year, quantity);
+                    } else {
+                        yearQuantityLinkedHashMap = new LinkedHashMap<>();
+                        yearQuantityLinkedHashMap.put(year,quantity);
+                        fruitHarvest.get(fruit).put(country,yearQuantityLinkedHashMap);
+                    }
+                }else{
+                    countryYearsLinkedHashMap = new LinkedHashMap<>();
+                    yearQuantityLinkedHashMap = new LinkedHashMap<>();
+                    yearQuantityLinkedHashMap.put(year,quantity);
+                    countryYearsLinkedHashMap.put(country,yearQuantityLinkedHashMap);
+                    fruitHarvest.put(fruit,countryYearsLinkedHashMap);
+                }
                 line = sc.nextLine();
             }
 

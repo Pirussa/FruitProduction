@@ -23,17 +23,18 @@ public class Year {
         return Objects.hash(year);
     }
 
-
-
-
-
-
-
-
-
-
-
-    public int getYear() {
-        return year;
+    @Override
+    public String toString() {
+        return String.valueOf(year);
     }
 }
+
+
+
+
+
+
+
+
+
+
