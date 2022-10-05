@@ -47,6 +47,11 @@ public class MainUI implements Runnable {
                         countriesMinimumSumUI.run();
                         keepCycle = true;
                     }
+                    case 4 -> {
+                        SortByConsecutiveYearUI sortByConsecutiveYearUI = new SortByConsecutiveYearUI();
+                        sortByConsecutiveYearUI.run();
+                        keepCycle = true;
+                    }
                     //add more if you need
                     default -> keepCycle = true;
                 }

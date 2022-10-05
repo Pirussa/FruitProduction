@@ -39,10 +39,12 @@ public class ReaderFromCsvFile implements IReadFromFile {
             }
 
             while (sc.hasNext()) {
-                String[] lineElements = line.split(",");
 
+                String[] lineElements;
                 if (flag) {
-                    lineElements = removeQuotationMarks(lineElements);
+                    lineElements = line.split("\",\"");
+                } else {
+                    lineElements = line.split(",");
                 }
 
                 Country country;
@@ -50,29 +52,16 @@ public class ReaderFromCsvFile implements IReadFromFile {
                 Year year;
                 Quantity quantity;
 
-                if (lineElements.length == 14) {
-                    country = new Country(lineElements[3]);
-                    fruit = new Fruit(lineElements[7]);
-                    year = new Year(Integer.parseInt(lineElements[9]));
-                    try {
-                        quantity = new Quantity(Integer.parseInt(lineElements[11]));
-                    } catch (Exception e) {
-                        quantity = new Quantity(0);
-                    }
 
-                } else {
-                    country = new Country(lineElements[3]);
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(lineElements[7]).append(",").append(lineElements[8]);
-                    fruit = new Fruit(sb.toString());
-                    year = new Year(Integer.parseInt(lineElements[10]));
-
-                    try {
-                        quantity = new Quantity(Integer.parseInt(lineElements[12]));
-                    } catch (Exception e) {
-                        quantity = new Quantity(0);
-                    }
+                country = new Country(lineElements[3]);
+                fruit = new Fruit(lineElements[7]);
+                year = new Year(Integer.parseInt(lineElements[9]));
+                try {
+                    quantity = new Quantity(Integer.parseInt(lineElements[11]));
+                } catch (Exception e) {
+                    quantity = new Quantity(0);
                 }
+
 
                 Map<Country, Map<Year, Quantity>> countryYearsLinkedHashMap;
                 Map<Year, Quantity> yearQuantityLinkedHashMap;
@@ -82,15 +71,15 @@ public class ReaderFromCsvFile implements IReadFromFile {
                         fruitHarvest.get(fruit).get(country).put(year, quantity);
                     } else {
                         yearQuantityLinkedHashMap = new LinkedHashMap<>();
-                        yearQuantityLinkedHashMap.put(year,quantity);
-                        fruitHarvest.get(fruit).put(country,yearQuantityLinkedHashMap);
+                        yearQuantityLinkedHashMap.put(year, quantity);
+                        fruitHarvest.get(fruit).put(country, yearQuantityLinkedHashMap);
                     }
-                }else{
+                } else {
                     countryYearsLinkedHashMap = new LinkedHashMap<>();
                     yearQuantityLinkedHashMap = new LinkedHashMap<>();
-                    yearQuantityLinkedHashMap.put(year,quantity);
-                    countryYearsLinkedHashMap.put(country,yearQuantityLinkedHashMap);
-                    fruitHarvest.put(fruit,countryYearsLinkedHashMap);
+                    yearQuantityLinkedHashMap.put(year, quantity);
+                    countryYearsLinkedHashMap.put(country, yearQuantityLinkedHashMap);
+                    fruitHarvest.put(fruit, countryYearsLinkedHashMap);
                 }
                 line = sc.nextLine();
             }
@@ -107,21 +96,8 @@ public class ReaderFromCsvFile implements IReadFromFile {
     }
 
     private boolean hasQuotationMarks(String testLine) {
-        String[] lineElements = testLine.split(",");
-        try {
-            String[] teste = removeQuotationMarks(lineElements);
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
+        return testLine.contains("\"");
     }
 
-    private static String[] removeQuotationMarks(String[] info) {
-        String[] withoutQuotationMarks = new String[info.length];
-        for (int i = 0; i < info.length; i++)
-            withoutQuotationMarks[i] = info[i].replace("\"", "");
-
-        return withoutQuotationMarks;
-    }
 
 }
