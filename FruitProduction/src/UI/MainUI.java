@@ -18,7 +18,7 @@ public class MainUI implements Runnable {
                 System.out.printf("Choose an option:%n%n1 - Load Data From CSV File.%n");
 
                 if (!App.getInstance().getStore().isEmpty()) {
-                    System.out.printf("2 - Get a List of countries (Production in year > Q). %n 3 - Calculate the minimum amount of countries that produce over a certain quantity%n4 - Sort by Consecutive Years"); // Escrevam a vossa cena aí.
+                    System.out.printf("2 - Get a List of countries (Production in year > Q). %n3 - Calculate the minimum amount of countries that produce over a certain quantity%n4 - Sort by Consecutive Years"); // Escrevam a vossa cena aí.
 
                 }
                 System.out.printf("%n0 - Exit%n%n");
@@ -62,6 +62,8 @@ public class MainUI implements Runnable {
             }
         } while (keepCycle);
 
+        SortByConsecutiveYearUI sortByConsecutiveYearUI = new SortByConsecutiveYearUI();
+        sortByConsecutiveYearUI.run();
 
     }
 
