@@ -48,18 +48,6 @@ public class QuickSort implements ISorter {
                 equalYearQuantities.add(quantities.get(position));
             }
         }
-        /*
-        while (!flag) {
-            if (i < countries.size() && years.get(i).getYear() == years.get(i + 1).getYear()) {
-                equalYearCountries = countries.subList(i, countries.size());
-                equalYearYears = years.subList(i, years.size());
-                equalYearQuantities = quantities.subList(i, quantities.size());
-                flag = true;
-                positionBroke = i;
-            }
-            i++;
-        }
-        */
         return positionBroke;
     }
 
