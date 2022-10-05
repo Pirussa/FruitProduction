@@ -27,6 +27,10 @@ public class Year {
     public String toString() {
         return String.valueOf(year);
     }
+
+    public int getYear() {
+        return year;
+    }
 }
 
 

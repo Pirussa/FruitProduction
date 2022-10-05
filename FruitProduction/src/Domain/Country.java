@@ -27,8 +27,4 @@ public class Country {
         return Objects.hash(countryName);
     }
 
-    @Override
-    public String toString() {
-        return countryName;
-    }
 }
