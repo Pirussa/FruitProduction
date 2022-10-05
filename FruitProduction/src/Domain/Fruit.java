@@ -11,6 +11,14 @@ public class Fruit {
         this.fruitName = fruitName;
     }
 
+    public String getFruitName() {
+        return fruitName;
+    }
+
+    public String toString() {
+        return fruitName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
