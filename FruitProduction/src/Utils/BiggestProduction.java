@@ -12,21 +12,8 @@ public class BiggestProduction {
      this.quantity = quantity;
 
     }
-
-    public String getYears() {
-        return years;
-    }
-
-    public String getFruit() {
-        return fruit;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
     @Override
     public String toString() {
-        return "The Biggest Absolute Difference of Production is ---> [" + years + "," + fruit + "," + quantity + "]";
+        return "[" + years + "," + fruit + "," + quantity + "]";
     }
 }

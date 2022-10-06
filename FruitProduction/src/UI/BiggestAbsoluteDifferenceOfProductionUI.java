@@ -19,9 +19,11 @@ public class BiggestAbsoluteDifferenceOfProductionUI implements Runnable {
     public void run() {
         System.out.printf("-------------------------------%n   Biggest Absolute Difference          %n--------------------------------%n%n");
         List<Country> countries = new ArrayList<>();
-        int index = Utils.showAndSelectIndex(controller.getCountriesList(countries), "Available Countries");
+        int index = Utils.showAndSelectIndex(controller.getCountriesList(countries), "Available Countries:");
 
-        System.out.printf("%s\n", controller.getBiggestAbsoluteDifference(countries.get(index)).toString());
+
+            System.out.printf("%nThe Biggest Absolute Difference of Production in %s is --> %s%n%n", countries.get(index).toString(),controller.getBiggestAbsoluteDifference(countries.get(index)).toString());
+
 
 
     }
