@@ -12,7 +12,7 @@ import java.util.*;
 public class CountriesWithMinimumQuantitySum {
     private final DataStore dataStore = App.getInstance().getStore();
 
-    public boolean getMinimumSumCountries(Quantity quantity) {
+    public int getMinimumSumCountries(Quantity quantity) {
         Map<Fruit, Map<Country, Map<Year, Quantity>>> fruitHarvest = dataStore.getFruitHarvest();
         ArrayList<Quantity> producaoTotal = new ArrayList<>();
         for (Fruit f : fruitHarvest.keySet()) {
@@ -34,7 +34,7 @@ public class CountriesWithMinimumQuantitySum {
         });
         int minCountries = minNumberOfCountries(producaoTotal,quantity);
         System.out.println(minCountries);
-        return minCountries > 0;
+        return minCountries;
 
 
     }
@@ -45,7 +45,6 @@ public class CountriesWithMinimumQuantitySum {
         while (totalsSum <= target.getQuantity()){
             totalsSum = totalsSum + producaoTotal.get(totalCountries).getQuantity();
             totalCountries++;
-
         }
         return totalCountries;
     }
