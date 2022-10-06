@@ -6,7 +6,6 @@ import Domain.Quantity;
 import Domain.Year;
 import Stores.DataStore;
 import Utils.QuickSort;
-import Utils.SortCountries;
 
 import java.util.*;
 
@@ -15,8 +14,6 @@ public class CoutryListController {
     private final DataStore fruitStore = App.getInstance().getStore();
 
     private final QuickSort quickSort = new QuickSort();
-
-    private final SortCountries sortCountries = new SortCountries();
 
     private List<Map<Country, Map<Year, Quantity>>> findCountryYearQuantity(Fruit F, Quantity Q) {
 
@@ -49,38 +46,35 @@ public class CoutryListController {
     }
 
     public List<Country> sort(Fruit F, Quantity Q) {
-        /*Map<Country, Map<Year, Quantity>> countryYearQuantity = findCountryYearQuantity(F, Q);
-
-        List<Year> years = new ArrayList<>();
-        List<Quantity> quantities = new ArrayList<>();
-        List<Country> equalYearCountries = new ArrayList<>();
-        List<Year> equalYearYears = new ArrayList<>();
-        List<Quantity> equalYearQuantities = new ArrayList<>();
-
-        quickSort.sort(countryYearQuantity, countries, years, quantities, numberSort, equalYearCountries, equalYearYears, equalYearQuantities);
-        numberSort++;
-        quickSort.sort(countryYearQuantity, countries, years, quantities, numberSort, equalYearCountries, equalYearYears, equalYearQuantities);
-        */
-
         List<Map<Country, Map<Year, Quantity>>> countryYearQuantity = findCountryYearQuantity(F, Q);
 
         List<Map.Entry<Country, Map<Year, Quantity>>> mainList = new ArrayList<>();
+        fillListWithMap(countryYearQuantity, mainList);
 
         List<Country> countries = new ArrayList<>();
+        quickSort.sort(mainList);
+        addCountriesToList(countries, mainList);
 
+        return countries;
+    }
+
+    private void fillListWithMap(List<Map<Country, Map<Year, Quantity>>> countryYearQuantity, List<Map.Entry<Country, Map<Year, Quantity>>> mainList) {
         for (Map<Country, Map<Year, Quantity>> countryMapMap : countryYearQuantity) {
             mainList.addAll(countryMapMap.entrySet());
         }
+    }
 
-        sortCountries.sortTest(mainList);
-        int numberSort = 0;
-
+    private void addCountriesToList(List<Country> countries, List<Map.Entry<Country, Map<Year, Quantity>>> mainList) {
         for (Map.Entry<Country, Map<Year, Quantity>> countryMapEntry : mainList) {
             countries.add(countryMapEntry.getKey());
         }
+    }
 
+    public Map<Fruit, Map<Country, Map<Year, Quantity>>> getHarvestMap() {
+        return fruitStore.getFruitHarvest();
+    }
 
-
-        return countries;
+    public Quantity newQuantity(int quantity) {
+        return new Quantity(quantity);
     }
 }

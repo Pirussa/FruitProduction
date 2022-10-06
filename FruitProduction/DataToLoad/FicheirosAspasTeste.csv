@@ -1,0 +1,7 @@
+Domain Code,Domain,Area Code (FAO),Area,Element Code,Element,Item Code (FAO),Item,Year Code,Year,Unit,Value,Flag,Flag Description
+"QCL","Crops and livestock products","58","Ecuador","5510","Production","515","Apples","2020","2020","tonnes","7262","Im","FAO data based on imputation methodology"
+"QCL","Crops and livestock products","62","Ethiopia PDR","5510","Production","486","Bananas","1983","1983","tonnes","73500","F","FAO estimate"
+"QCL","Crops and livestock products","74","Gabon","5510","Production","486","Bananas","1979","1979","tonnes","8000","F","FAO estimate"
+"QCL","Crops and livestock products","79","Germany","5510","Production","531","Cherries","2020","2020","tonnes","36800","","Official data"
+"QCL","Crops and livestock products","183","Romania","5510","Production","531","Cherries","1964","1964","tonnes","48700","","Official data"
+"QCL","Crops and livestock products","181","Zimbabwe","5510","Production","486","Bananas","2020","2020","tonnes","196853","Im","FAO data based on imputation methodology"
