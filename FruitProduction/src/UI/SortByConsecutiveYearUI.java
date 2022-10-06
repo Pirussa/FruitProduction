@@ -16,7 +16,7 @@ public class SortByConsecutiveYearUI implements Runnable{
         System.out.printf("-------------------------------%n   Sort by Consecutive Years         %n--------------------------------%n%n");
         Map<Fruit, Map<Country, Map<Year, Quantity>>> fruitHarvest = controller.getFruitHarvest();
         List<Fruit> fruits = new ArrayList<>(fruitHarvest.keySet());
-        int index = Utils.showAndSelectIndex(fruits, "Avaliable Fruits");
+        int index = Utils.showAndSelectIndex(fruits, "Available Fruits");
 
         Map<Country, Integer> consecutiveYearsMap = controller.sortByConsecutiveYears(fruits.get(index));
 
