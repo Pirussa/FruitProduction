@@ -11,7 +11,7 @@ public class CountryListUI implements Runnable{
     private final CoutryListController controller = new CoutryListController();
     @Override
     public void run() {
-        List<Country> countries = controller.sort(new Fruit("Apples"), new Quantity(200000));
+        List<Country> countries = controller.sort(new Fruit("Apples"), new Quantity(300000));
         System.out.println(countries);
     }
 }
