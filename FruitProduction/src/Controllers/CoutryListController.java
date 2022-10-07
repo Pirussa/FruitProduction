@@ -45,17 +45,15 @@ public class CoutryListController {
         return harvestQuantitySuperiorListMap;
     }
 
-    public List<Country> sort(Fruit F, Quantity Q) {
+    public List<Map.Entry<Country, Map<Year, Quantity>>> sort(Fruit F, Quantity Q) {
         List<Map<Country, Map<Year, Quantity>>> countryYearQuantity = findCountryYearQuantity(F, Q);
 
         List<Map.Entry<Country, Map<Year, Quantity>>> mainList = new ArrayList<>();
         fillListWithMap(countryYearQuantity, mainList);
 
-        List<Country> countries = new ArrayList<>();
+        //List<Country> countries = new ArrayList<>();
         quickSort.sort(mainList);
-        addCountriesToList(countries, mainList);
-
-        return countries;
+        return mainList;
     }
 
     private void fillListWithMap(List<Map<Country, Map<Year, Quantity>>> countryYearQuantity, List<Map.Entry<Country, Map<Year, Quantity>>> mainList) {

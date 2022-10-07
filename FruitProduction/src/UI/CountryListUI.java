@@ -4,10 +4,12 @@ import Controllers.CoutryListController;
 import Domain.Country;
 import Domain.Fruit;
 import Domain.Quantity;
+import Domain.Year;
 import Utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class CountryListUI implements Runnable {
@@ -31,7 +33,7 @@ public class CountryListUI implements Runnable {
         if (index >= 0) {
             Quantity quantity = newQuantity();
 
-            List<Country> countries = controller.sort(fruits.get(index), quantity);
+            List<Map.Entry<Country, Map<Year, Quantity>>> countries = controller.sort(fruits.get(index), quantity);
             printCountries(countries);
         }
     }
@@ -47,10 +49,16 @@ public class CountryListUI implements Runnable {
         return controller.newQuantity(quantity);
     }
 
-    private void printCountries(List<Country> countries) {
+    private void printCountries(List<Map.Entry<Country, Map<Year, Quantity>>> countries) {
         if (!countries.isEmpty()) {
-            System.out.printf("%n" + countries);
-            System.out.printf("%n%n");
+            System.out.println();
+            for (Map.Entry<Country, Map<Year, Quantity>> country : countries) {
+                for (Map.Entry<Year, Quantity> yearQuantity : country.getValue().entrySet()) {
+                    System.out.printf("Country : %s {Year : %s, Quatity : %s}%n", country.getKey(), yearQuantity.getKey(), yearQuantity.getValue());
+                    System.out.println();
+                }
+            }
+            System.out.println();
         }
         else System.out.printf("%nNo Country Has Produced a Higher Amount Than The Previous Quantity%n%n");
     }
