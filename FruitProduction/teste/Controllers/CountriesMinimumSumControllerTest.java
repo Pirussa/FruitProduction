@@ -52,4 +52,27 @@ public class CountriesMinimumSumControllerTest {
         int expected = 5;
         Assertions.assertEquals(expected,actual);
     }
+
+    @Test
+    public void minNumberOfCountries(){
+        CountriesWithMinimumQuantitySum c = new CountriesWithMinimumQuantitySum();
+        ArrayList<Quantity> testArray = new ArrayList<>();
+        Quantity q1 = new Quantity(10), q2 = new Quantity(20), q3 = new Quantity(30), q4 = new Quantity(40), q5 = new Quantity(50);
+        Quantity q6 = new Quantity(60), q7 = new Quantity(70), q8 = new Quantity(80), q9 = new Quantity(90), q10 = new Quantity(100);
+        testArray.add(q10);
+        testArray.add(q9);
+        testArray.add(q8);
+        testArray.add(q7);
+        testArray.add(q6);
+        testArray.add(q5);
+        testArray.add(q4);
+        testArray.add(q3);
+        testArray.add(q2);
+        testArray.add(q1);
+        int actual = c.minNumberOfCountries(testArray,new Quantity(200));
+        int expected = 3;
+        Assertions.assertEquals(expected,actual);
+
+
+    }
 }
