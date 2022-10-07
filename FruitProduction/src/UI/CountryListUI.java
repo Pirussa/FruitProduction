@@ -24,7 +24,7 @@ public class CountryListUI implements Runnable {
     }
 
     private void printMenu() {
-        System.out.printf("----------------%n|Countries List|%n----------------%n%n");
+        System.out.printf("------------------%n| Countries List |%n------------------%n%n");
     }
 
     private void validFruit(int index, List<Fruit> fruits) {
