@@ -29,19 +29,22 @@ public class CountriesWithMinimumQuantitySum {
         producaoTotal.sort(new Comparator<>() {
             @Override
             public int compare(Quantity o1, Quantity o2) {
-                return o1.getQuantity() - o2.getQuantity();
+                return -(o1.getQuantity() - o2.getQuantity());
             }
         });
-        int minCountries = minNumberOfCountries(producaoTotal,quantity);
-        System.out.println(minCountries);
-        return minCountries;
-
-
+        return minNumberOfCountries(producaoTotal,quantity);
     }
 
     public int minNumberOfCountries(ArrayList<Quantity> producaoTotal, Quantity target) {
         int totalsSum = 0;
         int totalCountries = 0;
+        int check = 0;
+        for (int i = 0; i < producaoTotal.size(); i++) {
+            check+= producaoTotal.get(i).getQuantity();
+        }
+        if(target.getQuantity() > check){
+            return -1;
+        }
         while (totalsSum <= target.getQuantity()){
             totalsSum = totalsSum + producaoTotal.get(totalCountries).getQuantity();
             totalCountries++;
