@@ -30,15 +30,15 @@ public class ReaderFromCsvFile implements IReadFromFile {
             boolean flag = false;
             sc.nextLine();
             String line = sc.nextLine();
-
-
+            Scanner sc1 = new Scanner(file);
+            sc1.nextLine();
             if (sc.hasNext()) {
                 if (hasQuotationMarks(line)) {
                     flag = true;
                 }
             }
 
-            while (sc.hasNext()) {
+            while (sc1.hasNext()) {
 
                 String[] lineElements;
                 if (flag) {
@@ -81,7 +81,9 @@ public class ReaderFromCsvFile implements IReadFromFile {
                     countryYearsLinkedHashMap.put(country, yearQuantityLinkedHashMap);
                     fruitHarvest.put(fruit, countryYearsLinkedHashMap);
                 }
-                line = sc.nextLine();
+                sc1.nextLine();
+                if (sc1.hasNextLine()) line = sc.nextLine();
+
             }
 
             dataStore.setFruitHarvest(fruitHarvest);
