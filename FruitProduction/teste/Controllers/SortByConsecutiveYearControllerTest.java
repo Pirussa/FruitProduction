@@ -145,4 +145,21 @@ class SortByConsecutiveYearControllerTest {
         Assertions.assertEquals(actualMap, expectedMap);
     }
 
+
+    void setUpForNullResult() {
+        DataStore fruitStore = App.getInstance().getStore();
+        Map<Fruit, Map<Country, Map<Year, Quantity>>> fruitHarvest = new LinkedHashMap<>();
+        fruitStore.setFruitHarvest(fruitHarvest);
+    }
+
+//    @Test
+//    public void sortByConsecutiveYearsNull() {
+//        setUpForNullResult();
+//        SortByConsecutiveYearController controller = new SortByConsecutiveYearController();
+//        Map<Country, Integer> actualMap = controller.sortByConsecutiveYears(new Fruit("Apples"));
+//        Map<Country, Integer> expectedMap = null;
+//
+//        Assertions.assertEquals(actualMap, expectedMap);
+//    }
+
 }

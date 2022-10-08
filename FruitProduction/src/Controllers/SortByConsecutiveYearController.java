@@ -4,6 +4,7 @@ import Domain.*;
 import Stores.DataStore;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -16,22 +17,27 @@ public class SortByConsecutiveYearController {
         Map<Country, Integer> countryMap = new LinkedHashMap<>();
 
         for (Map.Entry<Country, Map<Year, Quantity>> entry : map.entrySet()) {
+            Map<Year, Quantity> yearQuantityMap = entry.getValue();
             Country country = entry.getKey();
-            countryMap.put(country, getConsecutiveYears(entry));
+            countryMap.put(country, getConsecutiveYears(yearQuantityMap));
         }
 
         return countryMap;
     }
 
 
-    private int getConsecutiveYears(Map.Entry<Country, Map<Year, Quantity>> entry) {
-        Quantity quantity = new Quantity(0);
+    private int getConsecutiveYears(Map<Year, Quantity> yearQuantityMap) {
+        Quantity quantity = yearQuantityMap.entrySet().stream().findFirst().get().getValue();
         int consecutiveYears = 0, max = 0;
 
-        int size = entry.getValue().size();
-        for (Map.Entry<Year, Quantity> yearEntry : entry.getValue().entrySet()) {
+        Iterator<Map.Entry<Year, Quantity>> itr = yearQuantityMap.entrySet().iterator();
+        Map.Entry<Year, Quantity> entry = itr.next();
 
-            if (quantity.getQuantity() < yearEntry.getValue().getQuantity())
+        int size = yearQuantityMap.size();
+        while(itr.hasNext())
+        {
+            entry = itr.next();
+            if (quantity.getQuantity() < entry.getValue().getQuantity())
                 consecutiveYears++;
             else {
                 consecutiveYears = 0;
@@ -44,7 +50,7 @@ public class SortByConsecutiveYearController {
                 max = consecutiveYears;
 
             size--;
-            quantity = yearEntry.getValue();
+            quantity = entry.getValue();
         }
         return max;
     }
