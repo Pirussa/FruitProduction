@@ -34,7 +34,7 @@ public class CountryListUI implements Runnable {
             Quantity quantity = newQuantity();
 
             List<Map.Entry<Country, Map<Year, Quantity>>> countries = controller.sort(fruits.get(index), quantity);
-            printCountries(countries);
+            printCountries(countries, fruits, index);
         }
     }
 
@@ -49,10 +49,11 @@ public class CountryListUI implements Runnable {
         return controller.newQuantity(quantity);
     }
 
-    private void printCountries(List<Map.Entry<Country, Map<Year, Quantity>>> countries) {
+    private void printCountries(List<Map.Entry<Country, Map<Year, Quantity>>> countries, List<Fruit> fruits, int index) {
         if (!countries.isEmpty()) {
             int count = 1;
             System.out.println();
+            System.out.printf("[%s]%n%n", fruits.get(index));
             for (Map.Entry<Country, Map<Year, Quantity>> country : countries) {
                 for (Map.Entry<Year, Quantity> yearQuantity : country.getValue().entrySet()) {
                     System.out.printf("%dº: %s in %s, %s tonnes%n", count, country.getKey(), yearQuantity.getKey(), yearQuantity.getValue());
