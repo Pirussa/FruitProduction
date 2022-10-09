@@ -11,6 +11,7 @@ import java.util.*;
 
 public class CoutryListController {
 
+    private final int MAX_YEAR = 3000;
     private final DataStore fruitStore = App.getInstance().getStore();
 
     private final QuickSort quickSort = new QuickSort();
@@ -29,9 +30,12 @@ public class CoutryListController {
 
             Map<Country, Map<Year, Quantity>> harvestQuantitySuperiorMap = new LinkedHashMap<>();
 
+            Year year = new Year(MAX_YEAR);
+
             for (Map.Entry<Year, Quantity> yearQuantityEntry : countryYearQuantityEntry.getValue().entrySet()) {
 
-                if (yearQuantityEntry.getValue().getQuantity() >= Q.getQuantity() && !flag) {
+                if (yearQuantityEntry.getValue().getQuantity() >= Q.getQuantity() &&  yearQuantityEntry.getKey().getYear() < year.getYear()/*&& !flag*/) {
+                    year = yearQuantityEntry.getKey();
                     yearQuantityMap.put(yearQuantityEntry.getKey(), yearQuantityEntry.getValue());
                     harvestQuantitySuperiorMap.put(countryYearQuantityEntry.getKey(), yearQuantityMap);
                     harvestQuantitySuperiorListMap.add(harvestQuantitySuperiorMap);
@@ -62,10 +66,12 @@ public class CoutryListController {
         }
     }
 
-    private void addCountriesToList(List<Country> countries, List<Map.Entry<Country, Map<Year, Quantity>>> mainList) {
+    public List<Country> addCountriesToList(List<Map.Entry<Country, Map<Year, Quantity>>> mainList) {
+        List<Country> countries = new ArrayList<>();
         for (Map.Entry<Country, Map<Year, Quantity>> countryMapEntry : mainList) {
             countries.add(countryMapEntry.getKey());
         }
+        return countries;
     }
 
     public Map<Fruit, Map<Country, Map<Year, Quantity>>> getHarvestMap() {
