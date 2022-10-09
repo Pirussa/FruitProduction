@@ -54,7 +54,7 @@ public class CountryListUI implements Runnable {
             System.out.println();
             for (Map.Entry<Country, Map<Year, Quantity>> country : countries) {
                 for (Map.Entry<Year, Quantity> yearQuantity : country.getValue().entrySet()) {
-                    System.out.printf("Country : %s {Year : %s, Quatity : %s}%n", country.getKey(), yearQuantity.getKey(), yearQuantity.getValue());
+                    System.out.printf("Country : %s {Year : %s, Quantity : %s}%n", country.getKey(), yearQuantity.getKey(), yearQuantity.getValue());
                     System.out.println();
                 }
             }
