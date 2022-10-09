@@ -34,16 +34,13 @@ public class CoutryListController {
 
             for (Map.Entry<Year, Quantity> yearQuantityEntry : countryYearQuantityEntry.getValue().entrySet()) {
 
-                if (yearQuantityEntry.getValue().getQuantity() >= Q.getQuantity() &&  yearQuantityEntry.getKey().getYear() < year.getYear()/*&& !flag*/) {
+                if (yearQuantityEntry.getValue().getQuantity() >= Q.getQuantity() && yearQuantityEntry.getKey().getYear() < year.getYear()) {
                     year = yearQuantityEntry.getKey();
                     yearQuantityMap.put(yearQuantityEntry.getKey(), yearQuantityEntry.getValue());
                     harvestQuantitySuperiorMap.put(countryYearQuantityEntry.getKey(), yearQuantityMap);
                     harvestQuantitySuperiorListMap.add(harvestQuantitySuperiorMap);
-                    flag = true;
                 }
             }
-
-            flag = false;
         }
 
         return harvestQuantitySuperiorListMap;
