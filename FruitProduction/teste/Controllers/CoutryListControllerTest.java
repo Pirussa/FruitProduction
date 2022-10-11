@@ -5,13 +5,10 @@ import Domain.Fruit;
 import Domain.Quantity;
 import Domain.Year;
 import Stores.DataStore;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
-
-import static org.hamcrest.MatcherAssert.assertThat;
 
 class CoutryListControllerTest {
 
@@ -151,6 +148,26 @@ class CoutryListControllerTest {
         yearQuantityMap1.put(new Year(2012), new Quantity(700000));yearQuantityMap4.put(new Year(2000), new Quantity(125000));yearQuantityMap2.put(new Year(2012), new Quantity(654651));yearQuantityMap3.put(new Year(2012), new Quantity(200000));
 
         expectedMap.put(new Country("Etiopia"), yearQuantityMap2);expectedMap.put(new Country("Chile"), yearQuantityMap4);expectedMap.put(new Country("Japan"), yearQuantityMap1);expectedMap.put(new Country("Portugal"), yearQuantityMap3);
+
+        List<Map.Entry<Country, Map<Year, Quantity>>> expectedMap2 = new ArrayList<>(expectedMap.entrySet());
+        List<Country>expectedCountries = controller.addCountriesToList(expectedMap2);
+
+        List<Country> actualCountries = controller.addCountriesToList(actualMap);
+        Assertions.assertEquals(expectedCountries, actualCountries);
+    }
+
+    @Test
+    public void sortNotPossible() {
+        setUpForRandomConditions();
+        CoutryListController controller = new CoutryListController();
+        List<Fruit> fruits = new ArrayList<>(controller.getHarvestMap().keySet());
+        Quantity quantity = new Quantity(10000000);
+
+        List<Map.Entry<Country, Map<Year, Quantity>>> actualMap = controller.sort(fruits.get(0), quantity);
+
+        Map<Country, Map<Year, Quantity>> expectedMap = new LinkedHashMap<>();
+
+        //Expected to be empty.
 
         List<Map.Entry<Country, Map<Year, Quantity>>> expectedMap2 = new ArrayList<>(expectedMap.entrySet());
         List<Country>expectedCountries = controller.addCountriesToList(expectedMap2);

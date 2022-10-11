@@ -63,6 +63,6 @@ public class CountryListUI implements Runnable {
             }
             System.out.println();
         }
-        else System.out.printf("%nNo Country Has Produced a Higher Amount Than The Previous Quantity%n%n");
+        else System.out.printf("%nNo Country Has Produced a Higher Amount Than The Previous Quantity.%n%n");
     }
 }

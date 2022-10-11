@@ -11,7 +11,6 @@ import java.util.*;
 
 public class CoutryListController {
 
-    private final int MAX_YEAR = 3000;
     private final DataStore fruitStore = App.getInstance().getStore();
 
     private final QuickSort quickSort = new QuickSort();
@@ -22,14 +21,13 @@ public class CoutryListController {
 
         List<Map<Country, Map<Year, Quantity>>> harvestQuantitySuperiorListMap = new ArrayList<>();
 
-        boolean flag = false;
-
         for (Map.Entry<Country, Map<Year, Quantity>> countryYearQuantityEntry : harvestPerCountryMap.entrySet()) {
 
             Map<Year, Quantity> yearQuantityMap = new LinkedHashMap<>();
 
             Map<Country, Map<Year, Quantity>> harvestQuantitySuperiorMap = new LinkedHashMap<>();
 
+            int MAX_YEAR = 3000;
             Year year = new Year(MAX_YEAR);
 
             for (Map.Entry<Year, Quantity> yearQuantityEntry : countryYearQuantityEntry.getValue().entrySet()) {
@@ -51,8 +49,6 @@ public class CoutryListController {
 
         List<Map.Entry<Country, Map<Year, Quantity>>> mainList = new ArrayList<>();
         fillListWithMap(countryYearQuantity, mainList);
-
-        //List<Country> countries = new ArrayList<>();
         quickSort.sort(mainList);
         return mainList;
     }
