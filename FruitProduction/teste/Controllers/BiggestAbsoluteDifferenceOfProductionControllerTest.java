@@ -9,16 +9,13 @@ import Utils.BiggestProduction;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.*;
 
 class BiggestAbsoluteDifferenceOfProductionControllerTest {
+
     void setup() {
         DataStore fruitStore = App.getInstance().getStore();
+        fruitStore.getFruitHarvest().clear();
         Map<Fruit, Map<Country, Map<Year, Quantity>>> fruitHarvest = new LinkedHashMap<>();
 
         Year y1 = new Year(2000), y2 = new Year(2001), y3 = new Year(2002), y4 = new Year(2003), y5 = new Year(2004);
@@ -29,32 +26,64 @@ class BiggestAbsoluteDifferenceOfProductionControllerTest {
 
         Map<Year, Quantity> yearQuantityMap1 = new LinkedHashMap<>(), yearQuantityMap2 = new LinkedHashMap<>(), yearQuantityMap3 = new LinkedHashMap<>();
         Map<Year, Quantity> yearQuantityMap4 = new LinkedHashMap<>(), yearQuantityMap5 = new LinkedHashMap<>(), yearQuantityMap6 = new LinkedHashMap<>();
-        yearQuantityMap1.put(y1, q9); yearQuantityMap1.put(y2, q4); yearQuantityMap1.put(y9, q3);
-        yearQuantityMap2.put(y2, q7); yearQuantityMap2.put(y1, q5); yearQuantityMap2.put(y4, q9);
-        yearQuantityMap3.put(y5, q1); yearQuantityMap3.put(y2, q2); yearQuantityMap3.put(y1, q8);
-        yearQuantityMap4.put(y7, q6); yearQuantityMap4.put(y10, q1); yearQuantityMap4.put(y6, q3);
-        yearQuantityMap5.put(y1, q1); yearQuantityMap5.put(y4, q2); yearQuantityMap5.put(y6, q3);
-        yearQuantityMap6.put(y8, q10); yearQuantityMap6.put(y3, q4); yearQuantityMap6.put(y10, q5);
+        yearQuantityMap1.put(y1, q9);
+        yearQuantityMap1.put(y2, q4);
+        yearQuantityMap1.put(y9, q3);
+        yearQuantityMap2.put(y2, q7);
+        yearQuantityMap2.put(y1, q5);
+        yearQuantityMap2.put(y4, q9);
+        yearQuantityMap3.put(y5, q1);
+        yearQuantityMap3.put(y2, q2);
+        yearQuantityMap3.put(y1, q8);
+        yearQuantityMap4.put(y7, q6);
+        yearQuantityMap4.put(y10, q1);
+        yearQuantityMap4.put(y6, q3);
+        yearQuantityMap5.put(y1, q1);
+        yearQuantityMap5.put(y4, q2);
+        yearQuantityMap5.put(y6, q3);
+        yearQuantityMap6.put(y8, q10);
+        yearQuantityMap6.put(y3, q4);
+        yearQuantityMap6.put(y10, q5);
 
         Country c1 = new Country("Portugal"), c2 = new Country("Spain"), c3 = new Country("France");
         Country c4 = new Country("Germany"), c5 = new Country("Greece");
 
-        Map<Country, Map<Year, Quantity>> countryMap1 = new LinkedHashMap<>(),  countryMap2 = new LinkedHashMap<>(),  countryMap3 = new LinkedHashMap<>();
-        countryMap1.put(c1, yearQuantityMap1); countryMap1.put(c2, yearQuantityMap2); countryMap1.put(c3, yearQuantityMap3); countryMap1.put(c4, yearQuantityMap3);
-        countryMap2.put(c1, yearQuantityMap5); countryMap2.put(c5, yearQuantityMap1); countryMap2.put(c3, yearQuantityMap4);
-        countryMap3.put(c1, yearQuantityMap6); countryMap3.put(c2, yearQuantityMap3);
+        Map<Country, Map<Year, Quantity>> countryMap1 = new LinkedHashMap<>(), countryMap2 = new LinkedHashMap<>(), countryMap3 = new LinkedHashMap<>();
+        countryMap1.put(c1, yearQuantityMap1);
+        countryMap1.put(c2, yearQuantityMap2);
+        countryMap1.put(c3, yearQuantityMap3);
+        countryMap1.put(c4, yearQuantityMap3);
+        countryMap2.put(c1, yearQuantityMap5);
+        countryMap2.put(c5, yearQuantityMap1);
+        countryMap2.put(c3, yearQuantityMap4);
+        countryMap3.put(c1, yearQuantityMap6);
+        countryMap3.put(c2, yearQuantityMap3);
 
         Fruit f1 = new Fruit("Banana"), f2 = new Fruit("Apples"), f3 = new Fruit("Orange");
         Fruit f4 = new Fruit("Strawberry"), f5 = new Fruit("Dragon Fruit"), f6 = new Fruit("Pear");
 
-        fruitHarvest.put(f1, countryMap1); fruitHarvest.put(f2, countryMap2); fruitHarvest.put(f3, countryMap3);
-        fruitHarvest.put(f4, countryMap1); fruitHarvest.put(f5, countryMap2); fruitHarvest.put(f6, countryMap3);
+        fruitHarvest.put(f1, countryMap1);
+        fruitHarvest.put(f2, countryMap2);
+        fruitHarvest.put(f3, countryMap3);
+        fruitHarvest.put(f4, countryMap1);
+        fruitHarvest.put(f5, countryMap2);
+        fruitHarvest.put(f6, countryMap3);
 
         fruitStore.setFruitHarvest(fruitHarvest);
     }
 
     @Test
-    public void getBiggestAbsoluteDifferenceNormal(){
+    public void getBiggestAbsoluteDifferenceEmpty(){
+        App.getInstance().getStore().getFruitHarvest().clear();
+        BiggestAbsoluteDifferenceOfProductionController controller = new BiggestAbsoluteDifferenceOfProductionController();
+        Set<BiggestProduction> actualSet = controller.getBiggestAbsoluteDifference(new Country("Portugal"));
+        Set<BiggestProduction> expectedSet = new LinkedHashSet<>();
+
+        Assertions.assertEquals(expectedSet.toString(),actualSet.toString());
+
+    }
+    @Test
+    public void getBiggestAbsoluteDifferenceNormal() {
         setup();
         BiggestAbsoluteDifferenceOfProductionController controller = new BiggestAbsoluteDifferenceOfProductionController();
         Set<BiggestProduction> actualSet = controller.getBiggestAbsoluteDifference(new Country("Portugal"));
@@ -74,15 +103,11 @@ class BiggestAbsoluteDifferenceOfProductionControllerTest {
         expectedSet.add(expected5);
         expectedSet.add(expected6);
 
-     // assertEquals(expectedSet.size(),actualSet.size());
-     // assertEquals(true,actualSet.contains(expected1));
-     // assertEquals(true,actualSet.contains(expected2));
-     // assertEquals(true,actualSet.contains(expected3));
-     // assertEquals(true,actualSet.contains(expected4));
-     // assertEquals(true,actualSet.contains(expected5));
-     // assertEquals(true,actualSet.contains(expected6));
-
+        Assertions.assertEquals(expectedSet.toString(),actualSet.toString());
     }
+
+
+
 
 
 }
