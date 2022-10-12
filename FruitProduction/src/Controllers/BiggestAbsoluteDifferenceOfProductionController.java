@@ -17,7 +17,7 @@ public class BiggestAbsoluteDifferenceOfProductionController {
 
 
         for (Fruit fruit : fruitHarvest.keySet()) {
-            if (fruitHarvest.get(fruit).get(country) != null) {
+            if (fruitHarvest.get(fruit).get(country) != null && fruitHarvest.get(fruit).get(country).values().size() >= 2) {
                 Map<Year, Quantity> restrictedMap = fruitHarvest.get(fruit).get(country);
                 if (!restrictedMap.isEmpty()) {
                     Year year = restrictedMap.entrySet().stream().findFirst().get().getKey();
