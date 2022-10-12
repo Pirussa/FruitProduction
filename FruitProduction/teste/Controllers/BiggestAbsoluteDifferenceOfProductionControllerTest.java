@@ -4,8 +4,8 @@ import Domain.Country;
 import Domain.Fruit;
 import Domain.Quantity;
 import Domain.Year;
-import Stores.DataStore;
-import Utils.BiggestProduction;
+import Domain.Stores.DataStore;
+import Miscellaneous.BiggestProduction;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

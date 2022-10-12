@@ -1,11 +1,10 @@
 package UI;
 
-import Controllers.CoutryListController;
 import Domain.Country;
 import Domain.Fruit;
 import Domain.Quantity;
 import Domain.Year;
-import Utils.Utils;
+import Miscellaneous.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class CountryListUI implements Runnable {
-    private final CoutryListController controller = new CoutryListController();
+    private final LoadDataFromCsvFileUI.CountryListController controller = new LoadDataFromCsvFileUI.CountryListController();
 
     @Override
     public void run() {
@@ -56,7 +55,7 @@ public class CountryListUI implements Runnable {
             System.out.printf("[%s]%n%n", fruits.get(index));
             for (Map.Entry<Country, Map<Year, Quantity>> country : countries) {
                 for (Map.Entry<Year, Quantity> yearQuantity : country.getValue().entrySet()) {
-                    System.out.printf("%dº: %s in %s, %s tonnes%n", count, country.getKey(), yearQuantity.getKey(), yearQuantity.getValue());
+                    System.out.printf("%d: %s in %s, %s tonnes%n", count, country.getKey(), yearQuantity.getKey(), yearQuantity.getValue());
                     System.out.println();
                     count++;
                 }

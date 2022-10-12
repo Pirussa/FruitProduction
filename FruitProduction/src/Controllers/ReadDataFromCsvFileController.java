@@ -1,6 +1,6 @@
 package Controllers;
 
-import Utils.ReaderFromCsvFile;
+import Miscellaneous.ReaderFromCsvFile;
 
 public class ReadDataFromCsvFileController {
 

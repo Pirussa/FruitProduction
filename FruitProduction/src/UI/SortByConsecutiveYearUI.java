@@ -2,7 +2,7 @@ package UI;
 
 import Controllers.SortByConsecutiveYearController;
 import Domain.*;
-import Utils.*;
+import Miscellaneous.*;
 
 import java.util.*;
 

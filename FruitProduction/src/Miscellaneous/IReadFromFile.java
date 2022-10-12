@@ -1,4 +1,4 @@
-package Utils;
+package Miscellaneous;
 
 public interface IReadFromFile {
 

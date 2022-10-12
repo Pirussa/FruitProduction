@@ -1,4 +1,4 @@
-package Utils;
+package Miscellaneous;
 
 import Domain.Country;
 import Domain.Quantity;

@@ -1,11 +1,11 @@
-package Utils;
+package Miscellaneous;
 
 import Controllers.App;
 import Domain.Country;
 import Domain.Fruit;
 import Domain.Quantity;
 import Domain.Year;
-import Stores.DataStore;
+import Domain.Stores.DataStore;
 
 import java.io.File;
 import java.io.FileNotFoundException;

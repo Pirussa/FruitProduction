@@ -1,12 +1,9 @@
 package Controllers;
 
 import Domain.*;
-import Stores.DataStore;
-import Utils.*;
+import Domain.Stores.DataStore;
+import Miscellaneous.*;
 
-import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class SortByConsecutiveYearController {
@@ -16,7 +13,7 @@ public class SortByConsecutiveYearController {
 
     public Map<Country, Integer> sortByConsecutiveYears(Fruit f) {
         Map<Country, Map<Year, Quantity>> fruitInfoMap = fruitStore.getFruitHarvest().get(f);
-        return sort.sortByConsecutiveYears(f, fruitInfoMap);
+        return sort.sortByConsecutiveYears(fruitInfoMap);
     }
 
 

@@ -1,4 +1,4 @@
-package Utils;
+package Miscellaneous;
 
 import Domain.*;
 
@@ -8,7 +8,7 @@ public class SortByConsecutiveYears {
 
 
 
-    public Map<Country, Integer> sortByConsecutiveYears(Fruit f, Map<Country, Map<Year, Quantity>> fruitInfoMap) {
+    public Map<Country, Integer> sortByConsecutiveYears(Map<Country, Map<Year, Quantity>> fruitInfoMap) {
         Map<Country, Integer> countryMap = new LinkedHashMap<>();
 
         for (Map.Entry<Country, Map<Year, Quantity>> entry : fruitInfoMap.entrySet()) {

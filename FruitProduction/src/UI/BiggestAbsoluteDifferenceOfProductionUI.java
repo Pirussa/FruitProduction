@@ -2,7 +2,7 @@ package UI;
 
 import Controllers.BiggestAbsoluteDifferenceOfProductionController;
 import Domain.Country;
-import Utils.Utils;
+import Miscellaneous.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

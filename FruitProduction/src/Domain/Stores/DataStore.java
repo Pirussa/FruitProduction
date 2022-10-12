@@ -1,4 +1,4 @@
-package Stores;
+package Domain.Stores;
 import Domain.Country;
 import Domain.Fruit;
 import Domain.Quantity;

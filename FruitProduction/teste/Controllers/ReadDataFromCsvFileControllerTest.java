@@ -2,7 +2,7 @@ package Controllers;
 
 import Domain.Country;
 import Domain.Fruit;
-import Stores.DataStore;
+import Domain.Stores.DataStore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

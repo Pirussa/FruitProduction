@@ -1,0 +1,153 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+
+
+package UI {
+class BiggestAbsoluteDifferenceOfProductionUI {}
+class CountriesMinimumSumUI {}
+class CountryListUI {}
+class LoadDataFromCsvFileUI {}
+class SortByConsecutiveYearUI {}
+}
+
+
+package Controller{
+
+class BiggestAbsoluteDifferenceOfProductionController {
++getBiggestAbsoluteDifference(country)
++getCountriesList(List<Country>)
+}
+
+class CountriesMinimumSumController {
++getMinimumSumCountries(quantity)
+}
+
+class CountryListController {
+-findCountryYearQuantity(fruit, quantity)
++sort(fruit, quantity)
+-fillListWithMap(countryYearQuantity, mainList)
++addCountriesToList(mainList)
++getHarvestMap()
+}
+
+class ReadDataFromCsvFileController {
++getDataFromFile(filePath)
+}
+
+class SortByConsecutiveYearController {
++sortByConsecutiveYears(fruit)
++getFruitHarvest()
+}
+
+}
+
+package Domain {
+class Country {
+-countryName: String
+}
+
+class Fruit {
+-fruitName: String
+}
+class Quantity {
+-quantity: int
+}
+class Year {
+-year: int
+}
+
+package Stores {
+class DataStore {
++getFruitHarvest()
++setFruitHarvest(fruitHarvest)
+}
+}
+
+package Miscellaneous {
+
+class BiggestProduction{
++getFruit()
++getQuantity()
+}
+
+class CountriesWithMinimumQuantitySum{
++getMinimumSumCountries(quantity)
++minNumberOfCountries(producaoTotal, target)
+}
+
+interface IReadFromFile {
+readDataFromFile()
+}
+
+interface ISorter {
+sort(entries)
+}
+
+class QuickSort {
++quickSortYear(entries, low, high)
++partitionYear(entries,  low,  high)
+-swap(entries, firstPos, secondPos)
++sort(entries)
+}
+
+class ReaderFromCsvFile {
++readDataFromFile()
++hasQuotationMarks(testLine)
+}
+
+class SortByConsecutiveYears {
++sortByConsecutiveYears(fruit, fruitInfoMap)
+-getConsecutiveYears(yearQuantityMap)
+}
+
+class Utils {
++showAndSelectIndex(list, header)
++readLineFromConsole(prompt)
+}
+
+}
+
+}
+
+
+left to right direction
+
+
+'UI
+BiggestAbsoluteDifferenceOfProductionUI ..> BiggestAbsoluteDifferenceOfProductionController
+SortByConsecutiveYearUI ..> SortByConsecutiveYearController
+CountriesMinimumSumUI ..> CountriesMinimumSumController
+CountryListUI ..> CountryListController
+LoadDataFromCsvFileUI ..> ReadDataFromCsvFileController
+
+'CONTROLLER
+
+ReadDataFromCsvFileController ...>  DataStore
+ReadDataFromCsvFileController ..> IReadFromFile
+ReadDataFromCsvFileController ..> ReaderFromCsvFile
+
+CountryListController .u.>  DataStore
+CountryListController ..> QuickSort
+CountryListController ..> ISorter
+
+CountriesMinimumSumController .u.>  DataStore
+CountriesMinimumSumController ..> CountriesWithMinimumQuantitySum
+
+SortByConsecutiveYearController .u.>  DataStore
+SortByConsecutiveYearController ..> SortByConsecutiveYears
+
+BiggestAbsoluteDifferenceOfProductionController .u.>  DataStore
+BiggestAbsoluteDifferenceOfProductionController ...> BiggestProduction
+
+
+'DOMAIN
+
+DataStore "1" ---> "*" Fruit: has >
+DataStore "1" ---> "*" Year: has >
+DataStore "1" ---> "*" Quantity: has >
+DataStore "1" ---> "*" Country: has >
+
+
+
+@enduml

@@ -1,10 +1,9 @@
 package Controllers;
 
 import Domain.*;
-import Stores.DataStore;
-import Utils.BiggestProduction;
+import Domain.Stores.DataStore;
+import Miscellaneous.BiggestProduction;
 
-import java.awt.image.AreaAveragingScaleFilter;
 import java.util.*;
 
 public class BiggestAbsoluteDifferenceOfProductionController {
@@ -39,7 +38,8 @@ public class BiggestAbsoluteDifferenceOfProductionController {
                         lastYear = firstYear;
                         firstYear = aux;
                     }
-                    biggestDifferenceSet.add(new BiggestProduction(firstYear + "/" + lastYear, fruit.getFruitName(), biggestDifference));
+                    String years = firstYear + "/" + lastYear;
+                    biggestDifferenceSet.add(new BiggestProduction(years, fruit.getFruitName(), biggestDifference));
                 }
             }
         }

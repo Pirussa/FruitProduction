@@ -1,9 +1,8 @@
 package Controllers;
 
 import Domain.*;
-import Stores.*;
-import Utils.CountriesWithMinimumQuantitySum;
-import org.junit.Assert;
+import Domain.Stores.*;
+import Miscellaneous.CountriesWithMinimumQuantitySum;
 import org.junit.jupiter.api.*;
 
 import java.util.*;

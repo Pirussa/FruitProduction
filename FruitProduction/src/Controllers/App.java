@@ -1,6 +1,6 @@
 package Controllers;
 
-import Stores.DataStore;
+import Domain.Stores.DataStore;
 
 
 public class App {

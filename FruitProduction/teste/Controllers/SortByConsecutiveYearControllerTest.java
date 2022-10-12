@@ -1,7 +1,7 @@
 package Controllers;
 
 import Domain.*;
-import Stores.*;
+import Domain.Stores.*;
 import org.junit.jupiter.api.*;
 import java.util.*;
 

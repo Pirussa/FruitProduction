@@ -4,13 +4,14 @@ import Domain.Country;
 import Domain.Fruit;
 import Domain.Quantity;
 import Domain.Year;
-import Stores.DataStore;
+import Domain.Stores.DataStore;
+import UI.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-class CoutryListControllerTest {
+class CountryListControllerTest {
 
     void setUpForNormalConditions() {
         DataStore fruitStore = App.getInstance().getStore();
@@ -39,7 +40,7 @@ class CoutryListControllerTest {
     @Test
     public void sortByConsecutiveYearsForNormalConditions() {
         setUpForNormalConditions();
-        CoutryListController controller = new CoutryListController();
+        LoadDataFromCsvFileUI.CountryListController controller = new LoadDataFromCsvFileUI.CountryListController();
         List<Fruit> fruits = new ArrayList<>(controller.getHarvestMap().keySet());
         Quantity quantity = new Quantity(124000);
 
@@ -87,7 +88,7 @@ class CoutryListControllerTest {
     @Test
     public void sortByConsecutiveYearsForEqualYears() {
         setUpForEqualYears();
-        CoutryListController controller = new CoutryListController();
+        LoadDataFromCsvFileUI.CountryListController controller = new LoadDataFromCsvFileUI.CountryListController();
         List<Fruit> fruits = new ArrayList<>(controller.getHarvestMap().keySet());
         Quantity quantity = new Quantity(124000);
 
@@ -135,7 +136,7 @@ class CoutryListControllerTest {
     @Test
     public void sortByRandomConditions() {
         setUpForRandomConditions();
-        CoutryListController controller = new CoutryListController();
+        LoadDataFromCsvFileUI.CountryListController controller = new LoadDataFromCsvFileUI.CountryListController();
         List<Fruit> fruits = new ArrayList<>(controller.getHarvestMap().keySet());
         Quantity quantity = new Quantity(124000);
 
@@ -159,7 +160,7 @@ class CoutryListControllerTest {
     @Test
     public void sortNotPossible() {
         setUpForRandomConditions();
-        CoutryListController controller = new CoutryListController();
+        LoadDataFromCsvFileUI.CountryListController controller = new LoadDataFromCsvFileUI.CountryListController();
         List<Fruit> fruits = new ArrayList<>(controller.getHarvestMap().keySet());
         Quantity quantity = new Quantity(10000000);
 
