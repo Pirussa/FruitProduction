@@ -22,6 +22,10 @@ public class SortByConsecutiveYears {
 
 
     private int getConsecutiveYears(Map<Year, Quantity> yearQuantityMap) {
+
+        if (yearQuantityMap.isEmpty()){
+            return 0;
+        }
         Quantity quantity = yearQuantityMap.entrySet().stream().findFirst().get().getValue();
         int consecutiveYears = 0, max = 0;
 

@@ -50,11 +50,11 @@ class SortByConsecutiveYearControllerTest {
         SortByConsecutiveYearController controller = new SortByConsecutiveYearController();
         Map<Country, Integer> actualMap = controller.sortByConsecutiveYears(new Fruit("Apples"));
         Map<Country, Integer> expectedMap = new LinkedHashMap<>();
-        expectedMap.put(new Country("Portugal"), 2);
+        expectedMap.put(new Country("Portugal"), 1);
         expectedMap.put(new Country("Greece"), 1);
-        expectedMap.put(new Country("France"), 3);
+        expectedMap.put(new Country("France"), 2);
 
-        Assertions.assertEquals(actualMap, expectedMap);
+        Assertions.assertEquals(expectedMap, actualMap);
     }
 
     void setUpForNoIncrements() {
@@ -99,17 +99,18 @@ class SortByConsecutiveYearControllerTest {
         SortByConsecutiveYearController controller = new SortByConsecutiveYearController();
         Map<Country, Integer> actualMap = controller.sortByConsecutiveYears(new Fruit("Apples"));
         Map<Country, Integer> expectedMap = new LinkedHashMap<>();
-        expectedMap.put(new Country("Portugal"), 1);
-        expectedMap.put(new Country("Greece"), 1);
-        expectedMap.put(new Country("France"), 1);
+        expectedMap.put(new Country("Portugal"), 0);
+        expectedMap.put(new Country("Greece"), 0);
+        expectedMap.put(new Country("France"), 0);
 
-        Assertions.assertEquals(actualMap, expectedMap);
+        Assertions.assertEquals(expectedMap, actualMap);
     }
 
 
 
     void setUpForEmptyYearQtMap() {
         DataStore fruitStore = App.getInstance().getStore();
+        fruitStore.getFruitHarvest().clear();
         Map<Fruit, Map<Country, Map<Year, Quantity>>> fruitHarvest = new LinkedHashMap<>();
 
         Map<Year, Quantity> yearQuantityMap1 = new LinkedHashMap<>(), yearQuantityMap2 = new LinkedHashMap<>(), yearQuantityMap3 = new LinkedHashMap<>();
@@ -148,6 +149,7 @@ class SortByConsecutiveYearControllerTest {
 
     void setUpForNullResult() {
         DataStore fruitStore = App.getInstance().getStore();
+        fruitStore.getFruitHarvest().clear();
         Map<Fruit, Map<Country, Map<Year, Quantity>>> fruitHarvest = new LinkedHashMap<>();
         fruitStore.setFruitHarvest(fruitHarvest);
     }
