@@ -29,5 +29,6 @@ public class SortByConsecutiveYearUI implements Runnable{
             System.out.printf("%d - %-58s%d%n", line, entry.getKey(), entry.getValue());
             line++;
         }
+        System.out.printf("%n%n");
     }
 }
