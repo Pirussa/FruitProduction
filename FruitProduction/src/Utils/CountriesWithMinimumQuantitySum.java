@@ -38,7 +38,7 @@ public class CountriesWithMinimumQuantitySum {
     public int minNumberOfCountries(ArrayList<Quantity> producaoTotal, Quantity target) {
         int totalsSum = 0;
         int totalCountries = 0;
-        int check = 0;
+        long check = 0;
         for (int i = 0; i < producaoTotal.size(); i++) {
             check+= producaoTotal.get(i).getQuantity();
         }
