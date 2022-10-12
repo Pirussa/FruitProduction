@@ -19,11 +19,11 @@ public class CountriesMinimumSumUI implements Runnable {
         int num = controller.getMinimumSumCountries(quantity);
         if (num>0) {
             System.out.printf("%nOperation Success!%n");
-            System.out.printf("%nThe minimum number of countries which excedes the given quantity is: %d",num);
+            System.out.printf("%nThe minimum number of countries which excedes the given quantity is: %d%n",num);
             System.out.println();
 
         }
-        if(num == -1){
+        else if(num == -1){
             System.out.printf("%nERROR:The quantity given is greater than the total sum of production%n%n");
         }else {
             System.out.printf("%n Something went wrong%n");
